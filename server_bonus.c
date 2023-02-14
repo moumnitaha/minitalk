@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:16:23 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/14 12:17:09 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:57:50 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ int	pow_two(int n)
 
 void	sighandle(int signum, siginfo_t *p, void *t)
 {
-	static int	count;
 	static int	data;
 	static int	bit = 7;
 
 	if (g_client_pid != p->si_pid)
 	{
-		count = 0;
 		data = 0;
 		bit = 7;
 	}
@@ -43,11 +41,9 @@ void	sighandle(int signum, siginfo_t *p, void *t)
 	if (signum == SIGUSR1)
 		data += pow_two(bit);
 	bit--;
-	count++;
-	if (count == 8)
+	if (bit == -1)
 	{
 		ft_putchar(data);
-		count = 0;
 		data = 0;
 		bit = 7;
 	}
