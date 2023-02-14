@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:16:23 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/14 16:57:50 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/14 17:43:36 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,22 @@ int	g_client_pid;
 
 int	pow_two(int n)
 {
-	int	result;
-
-	result = 1;
-	while (n)
-	{
-		result *= 2;
-		n--;
-	}
-	return (result);
+	if (!n)
+		return (1);
+	return (2 * pow_two(n - 1));
 }
 
-void	sighandle(int signum, siginfo_t *p, void *t)
+void	sighandle(int signum, siginfo_t *sig_data, void *t)
 {
 	static int	data;
 	static int	bit = 7;
 
-	if (g_client_pid != p->si_pid)
+	if (g_client_pid != sig_data->si_pid)
 	{
 		data = 0;
 		bit = 7;
 	}
-	t = (void *) NULL;
+	t = 0;
 	if (signum == SIGUSR1)
 		data += pow_two(bit);
 	bit--;
@@ -47,7 +41,7 @@ void	sighandle(int signum, siginfo_t *p, void *t)
 		data = 0;
 		bit = 7;
 	}
-	g_client_pid = p->si_pid;
+	g_client_pid = sig_data->si_pid;
 }
 
 int	main(void)
@@ -63,8 +57,8 @@ int	main(void)
 	sa.sa_flags = SA_RESTART;
 	sa.__sigaction_u.__sa_sigaction = &sighandle;
 	sigemptyset(&sa.sa_mask);
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
+	sigaction(SIGUSR1, &sa, 0);
+	sigaction(SIGUSR2, &sa, 0);
 	acknowledge = 0;
 	while (1)
 	{
