@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:56:46 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/14 14:08:39 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/14 14:45:44 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	send_signal(char c, int pid)
 
 int	main(int ac, char **av)
 {
-	int					i;
-	int					pid;
+	int	i;
+	int	pid;
 
 	i = 0;
 	pid = ft_atoi(av[1]);
