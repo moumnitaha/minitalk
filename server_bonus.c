@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 15:56:39 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/14 12:19:09 by tmoumni          ###   ########.fr       */
+/*   Created: 2023/02/14 12:16:23 by tmoumni           #+#    #+#             */
+/*   Updated: 2023/02/14 12:17:09 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(void)
 {
 	int					pid;
 	struct sigaction	sa;
+	int					acknowledge;
 
 	pid = getpid();
 	ft_putstr("PID: ");
@@ -68,8 +69,14 @@ int	main(void)
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
+	acknowledge = 0;
 	while (1)
 	{
+		if (acknowledge != g_client_pid)
+		{
+			acknowledge = g_client_pid;
+			kill(g_client_pid, SIGUSR1);
+		}
 		pause();
 	}
 	return (0);

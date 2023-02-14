@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 15:56:46 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/14 12:18:22 by tmoumni          ###   ########.fr       */
+/*   Created: 2023/02/14 12:16:12 by tmoumni           #+#    #+#             */
+/*   Updated: 2023/02/14 12:17:31 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	received(int signum)
+{
+	if (signum == SIGUSR1)
+		ft_putstr("\033[1mMESSAGE RECEIVED.\033[0m\n");
+}
 
 void	send_signal(char c, int pid)
 {
@@ -33,6 +39,7 @@ int	main(int ac, char **av)
 	int					i;
 	int					pid;
 
+	signal(SIGUSR1, &received);
 	i = 0;
 	pid = ft_atoi(av[1]);
 	if (ac == 3)
