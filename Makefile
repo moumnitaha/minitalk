@@ -6,7 +6,7 @@
 #    By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 11:54:58 by tmoumni           #+#    #+#              #
-#    Updated: 2023/02/14 12:27:58 by tmoumni          ###   ########.fr        #
+#    Updated: 2023/02/14 13:58:33 by tmoumni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,25 +28,30 @@ BC_SRC = client_bonus.c
 S_OBJ = $(S_SRC:%.c=%.o)
 C_OBJ = $(C_SRC:%.c=%.o)
 
+BOLD = \033[1m
+END = \033[0m
+GREEN=\033[1;32m
+CYAN=\033[1;36m
+
 all: $(SERVER) $(CLIENT)
-	@echo "Client and Server created successfully!"
+	@echo "$(GREEN)client$(END) and $(GREEN)server$(END) created successfully!"
 
 %.o : %.c $(HEADER)
 	@$(CC) -c $< $(CFLAGS) -o $@
 	@echo "Compiling:" $< "..."
 
 $(CLIENT): $(C_SRC) $(HEADER) $(C_OBJ)
-	@echo "Compiling client..."
+	@echo "Creating $(GREEN)client...$(END)"
 	@$(CC) $(CFLAGS) $(C_OBJ) $(UTILS) -o $(CLIENT)
 
 $(SERVER): $(S_SRC) $(HEADER) $(S_OBJ)
-	@echo "Compiling server..."
+	@echo "Creating $(GREEN)server...$(END)"
 	@$(CC) $(CFLAGS) $(S_OBJ) $(UTILS) -o $(SERVER)
 
 bonus:
 	@$(CC) $(CFLAGS) $(BC_SRC) $(UTILS) -o $(CLIENT)
 	@$(CC) $(CFLAGS) $(BS_SRC) $(UTILS) -o $(SERVER)
-	@echo "BONUS Client and Server created successfully!"
+	@echo "$(CYAN)BONUS:$(END) $(GREEN)client$(END) and $(GREEN)server$(END) created successfully!"
 
 clean:
 	@rm -f $(S_OBJ) $(C_OBJ)

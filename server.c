@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:56:39 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/14 12:19:09 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/14 13:51:47 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,12 @@ int	main(void)
 	ft_putstr("PID: ");
 	ft_putnbr(pid);
 	write(1, "\n", 1);
-	sa.sa_flags = SA_RESTART;
+	sa.sa_flags = SA_SIGINFO;
 	sa.__sigaction_u.__sa_sigaction = &sighandle;
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
-	{
 		pause();
-	}
 	return (0);
 }
