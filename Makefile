@@ -6,7 +6,7 @@
 #    By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 11:54:58 by tmoumni           #+#    #+#              #
-#    Updated: 2023/02/12 16:50:48 by tmoumni          ###   ########.fr        #
+#    Updated: 2023/02/14 12:08:13 by tmoumni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,30 +20,37 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-S_SRC = server.c utils.c
+S_SRC = server.c
 
-C_SRC = client.c utils.c
+C_SRC = client.c
+
+S_OBJ = $(S_SRC:%.c=%.o)
+C_OBJ = $(C_SRC:%.c=%.o)
 
 all: $(SERVER) $(CLIENT)
 	@echo "Client and Server created successfully!"
 
-$(CLIENT): $(C_SRC) $(HEADER)
-	@echo "Compiling client..."
-	@$(CC) $(CFLAGS) $(C_SRC) -o $(CLIENT)
+%.o : %.c $(HEADER)
+	@$(CC) -c $< $(CFLAGS) -o $@
+	@echo "Compiling:" $< "..."
 
-$(SERVER): $(S_SRC) $(HEADER)
+$(CLIENT): $(C_SRC) $(HEADER) $(C_OBJ)
+	@echo "Compiling client..."
+	@$(CC) $(CFLAGS) $(C_OBJ) utils.c -o $(CLIENT)
+
+$(SERVER): $(S_SRC) $(HEADER) $(S_OBJ)
 	@echo "Compiling server..."
-	@$(CC) $(CFLAGS) $(S_SRC) -o $(SERVER)
+	@$(CC) $(CFLAGS) $(S_OBJ) utils.c -o $(SERVER)
 
 bonus: $(SERVER) $(CLIENT)
 	@echo "Client and Server created successfully!"
 
-clean: 
-	@rm $(SERVER) $(CLIENT)
+clean:
+	@rm -f $(S_OBJ) $(C_OBJ)
 
 fclean:
-	@rm $(SERVER) $(CLIENT)
+	@rm -f $(SERVER) $(CLIENT) $(S_OBJ) $(C_OBJ)
 
-re: clean all
+re: fclean all
 
 .PHONY: all clean re

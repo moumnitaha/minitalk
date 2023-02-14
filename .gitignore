@@ -1,4 +1,6 @@
 .tldr
 server
 client
-
+*.sh
+a.out
+*.o
