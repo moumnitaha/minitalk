@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:56:46 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/15 18:19:38 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/15 19:39:10 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int	main(int ac, char **av)
 	if (ac == 3)
 	{
 		while (av[2][i])
-		{
-			send_signal(av[2][i], pid);
-			i++;
-		}
+			send_signal(av[2][i++], pid);
 	}
 	else
 	{
