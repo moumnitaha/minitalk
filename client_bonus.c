@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:16:12 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/15 18:19:43 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/15 18:54:56 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	received(int signum)
 {
 	if (signum == SIGUSR1)
-		ft_putstr("\033[1mMESSAGE RECEIVED.\033[0m\n");
+		ft_putstr("\033[1m[[ MESSAGE RECEIVED ]]\033[0m\n");
 }
 
 void	send_signal(char c, int pid)
