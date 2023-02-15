@@ -6,7 +6,7 @@
 #    By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/12 11:54:58 by tmoumni           #+#    #+#              #
-#    Updated: 2023/02/15 10:16:51 by tmoumni          ###   ########.fr        #
+#    Updated: 2023/02/15 12:30:02 by tmoumni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,8 @@ BC_OBJ = $(BC_SRC:%.c=%.o)
 
 BOLD = \033[1m
 END = \033[0m
-GREEN=\033[1;32m
-CYAN=\033[1;36m
+GREEN = \033[1;32m
+CYAN = \033[1;36m
 
 all: $(SERVER) $(CLIENT)
 	@echo "$(GREEN)client$(END) and $(GREEN)server$(END) created successfully!"
@@ -54,7 +54,7 @@ $(SERVER): $(S_SRC) $(HEADER) $(S_OBJ)
 bonus: $(BC_OBJ) $(BS_OBJ)
 	@$(CC) $(CFLAGS) $(BC_OBJ) $(UTILS) -o $(CLIENT)
 	@$(CC) $(CFLAGS) $(BS_OBJ) $(UTILS) -o $(SERVER)
-	@echo "$(CYAN)BONUS:$(END) $(GREEN)client$(END) and $(GREEN)server$(END) created successfully!"
+	@echo "$(CYAN)BONUS: $(GREEN)client$(END) and $(GREEN)server$(END) created successfully!"
 
 clean:
 	@rm -f $(S_OBJ) $(C_OBJ) $(BC_OBJ) $(BS_OBJ)
