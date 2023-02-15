@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:16:12 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/14 12:17:31 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/15 18:19:43 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	main(int ac, char **av)
 			send_signal(av[2][i], pid);
 			i++;
 		}
-		send_signal('\n', pid);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:56:39 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/14 18:20:02 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/15 18:16:21 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sighandle(int signum, siginfo_t *sig_data, void *t)
 	static int	data;
 	static int	bit = 7;
 
-	t = NULL;
+	(void)t;
 	if (g_client_pid != sig_data->si_pid)
 	{
 		data = 0;
@@ -53,8 +53,8 @@ int	main(void)
 	ft_putstr("PID: ");
 	ft_putnbr(pid);
 	write(1, "\n", 1);
-	sa.sa_flags = SA_SIGINFO;
-	sa.__sigaction_u.__sa_sigaction = &sighandle;
+	sa.sa_flags = SA_RESTART;
+	sa.sa_sigaction = &sighandle;
 	sigemptyset(&sa.sa_mask);
 	sigaction(SIGUSR1, &sa, 0);
 	sigaction(SIGUSR2, &sa, 0);
