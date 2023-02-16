@@ -5,3 +5,4 @@ client
 a.out
 *.o
 .gitignore
+.vscode
