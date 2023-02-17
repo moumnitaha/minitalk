@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:56:46 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/17 14:25:10 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/17 14:31:45 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	send_signal(char c, int pid)
 		else
 			kill(pid, SIGUSR2);
 		i++;
-		usleep(200);
+		usleep(250);
 	}
 }
 
