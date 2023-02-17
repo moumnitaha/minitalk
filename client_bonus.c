@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:16:12 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/16 11:47:18 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/17 14:24:44 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	send_signal(char c, int pid)
 	i = 0;
 	while (i < 8)
 	{
-		usleep(600);
 		if ((c >> i) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		i++;
+		usleep(200);
 	}
 }
 
