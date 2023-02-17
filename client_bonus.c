@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:16:12 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/17 14:53:53 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:36:03 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		ft_putstr("\033[1mUsage: ./client [PID] [Message]\033[0m\n");
+		ft_putstr("\033[1;31mUsage: ./client [PID] [Message]\033[0m\n");
 		exit(EXIT_FAILURE);
 	}
 	return (0);
