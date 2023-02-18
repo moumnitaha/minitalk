@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 15:56:46 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/17 15:36:07 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/17 18:04:41 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	main(int ac, char **av)
 	int	pid;
 
 	i = 0;
-	pid = ft_atoi(av[1]);
 	if (ac == 3)
 	{
+		pid = ft_atoi(av[1]);
 		while (av[2][i])
 			send_signal(av[2][i++], pid);
 	}
