@@ -6,7 +6,7 @@
 /*   By: tmoumni <tmoumni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 12:16:12 by tmoumni           #+#    #+#             */
-/*   Updated: 2023/02/18 13:13:28 by tmoumni          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:51:40 by tmoumni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	send_signal(char c, int pid)
 {
 	int	i;
 
-	i = 0;
-	while (i < 8)
+	i = 7;
+	while (i >= 0)
 	{
 		if ((c >> i) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		i++;
+		i--;
 		usleep(250);
 	}
 }
@@ -40,10 +40,10 @@ int	main(int ac, char **av)
 	int					pid;
 
 	signal(SIGUSR1, &received);
-	i = 0;
-	pid = ft_atoi(av[1]);
 	if (ac == 3)
 	{
+		i = 0;
+		pid = ft_atoi(av[1]);
 		while (av[2][i])
 			send_signal(av[2][i++], pid);
 	}
